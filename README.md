@@ -1,1 +1,1 @@
-# testy-go
+# Testy Go
