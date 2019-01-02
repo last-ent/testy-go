@@ -113,7 +113,7 @@ func StartPrompt(dir string) {
 	p := prompt.New(
 		getExecutor(dir),
 		completer,
-		prompt.OptionTitle("CWD: "+dir),
+		prompt.OptionTitle("Welcome to Testy Go! A tool for easy testing."),
 	)
 	p.Run()
 }

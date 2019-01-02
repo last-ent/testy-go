@@ -23,7 +23,7 @@ func ParseFlags(getDirFn func() (string, error)) (*ParseOpts, error) {
 	flag.Parse()
 
 	workDir, _ = filepath.Abs(workDir)
-	fmt.Println("CWD: " + workDir)
+	fmt.Println("WELCOME TO TESTY GO! A TOOL FOR EASY TESTING.\nCWD: " + workDir)
 
 	return &ParseOpts{workDir}, nil
 }
