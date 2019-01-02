@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"githug.com/last-ent/testy-go/classifier"
+	"github.com/last-ent/testy-go/classifier"
 )
 
 func TestListDirsAsMap(t *testing.T) {

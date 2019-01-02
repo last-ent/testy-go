@@ -59,7 +59,7 @@ func ExecuteAllTestsInDir(dirMap map[int]string, dirIndex int) (string, error) {
 func ExecuteDefaultTestsInFile(fileMap map[int]string, fileIndex int) (string, error) {
 	testFile := fileMap[fileIndex]
 	file := strings.Replace(testFile, "_test", "", 1)
-	return executeCommand(fmt.Sprintf("go test -short -v {%s,%s}", file, testFile))
+	return executeCommand(fmt.Sprintf("go test -short -v %s %s", file, testFile))
 }
 
 // ExecuteAllTestsInFile runs all tests (including skippable tests) within a selected file.
@@ -69,5 +69,5 @@ func ExecuteDefaultTestsInFile(fileMap map[int]string, fileIndex int) (string, e
 func ExecuteAllTestsInFile(fileMap map[int]string, fileIndex int) (string, error) {
 	testFile := fileMap[fileIndex]
 	file := strings.Replace(testFile, "_test", "", 1)
-	return executeCommand(fmt.Sprintf("go test -v {%s,%s}", file, testFile))
+	return executeCommand(fmt.Sprintf("go test -v %s %s", file, testFile))
 }

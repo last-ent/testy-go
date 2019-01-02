@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"githug.com/last-ent/testy-go/classifier"
+	"github.com/last-ent/testy-go/classifier"
 )
 
 func TestMapToString(t *testing.T) {

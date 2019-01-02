@@ -1,1 +1,1 @@
-module githug.com/last-ent/testy-go
+module github.com/last-ent/testy-go
