@@ -14,7 +14,7 @@ func TestListDirsAsMap(t *testing.T) {
 		Dirs:      []string{"./dir1", "./dir2", "./dir3"},
 	}
 
-	actual := listDirsAsMap(meta)
+	actual := ListDirsAsMap(meta)
 	expected := map[int]string{
 		1: "/root/dir1",
 		2: "/root/dir2",
@@ -33,7 +33,7 @@ func TestListFilesAsMap(t *testing.T) {
 		Dirs:      []string{},
 	}
 
-	actual := listFilesAsMap(meta)
+	actual := ListFilesAsMap(meta)
 	expected := map[int]string{
 		1: "/root/dir1/file",
 		2: "/root/dir2/file",

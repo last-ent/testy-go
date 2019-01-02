@@ -2,13 +2,14 @@ package commands
 
 import (
 	"fmt"
-	"unicode/utf8"
+	"strings"
 
 	"github.com/last-ent/testy-go/classifier"
 )
 
-func listDirs(meta *classifier.TestableDirMeta) string {
-	return mapToString(listDirsAsMap(meta))
+// ListDirs returns string representation of all testable packages under `dir`
+func ListDirs(meta *classifier.TestableDirMeta) string {
+	return mapToString(ListDirsAsMap(meta))
 }
 
 func mapToString(m map[int]string) string {
@@ -20,17 +21,19 @@ func mapToString(m map[int]string) string {
 }
 
 func prefixDir(dir string, path string) string {
-	_, runeSize := utf8.DecodeRuneInString(path)
-	return fmt.Sprintf("%s%s", dir, path[runeSize:])
+	path = strings.TrimPrefix(path, ".")
+	return fmt.Sprintf("%s%s", dir, path)
 }
 
-func listFiles(meta *classifier.TestableDirMeta) string {
-	return mapToString(listFilesAsMap(meta))
+// ListFiles returns string representation of all testable files under `dir`
+func ListFiles(meta *classifier.TestableDirMeta) string {
+	return mapToString(ListFilesAsMap(meta))
 }
 
-func listAll(meta *classifier.TestableDirMeta) string {
-	dirsRepr := listDirs(meta)
-	filesRepr := listFiles(meta)
+// ListAll returns string representation of all testable files & packages under `dir`
+func ListAll(meta *classifier.TestableDirMeta) string {
+	dirsRepr := ListDirs(meta)
+	filesRepr := ListFiles(meta)
 
 	return fmt.Sprintf("DIRS:\n%s\n==========\n\nFILES:\n%s", dirsRepr, filesRepr)
 }
