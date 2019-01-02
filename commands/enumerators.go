@@ -1,6 +1,6 @@
 package commands
 
-import "githug.com/last-ent/testy-go/classifier"
+import "github.com/last-ent/testy-go/classifier"
 
 func listDirsAsMap(meta *classifier.TestableDirMeta) map[int]string {
 	dirMap := map[int]string{}

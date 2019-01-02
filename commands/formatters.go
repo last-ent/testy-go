@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"unicode/utf8"
 
-	"githug.com/last-ent/testy-go/classifier"
+	"github.com/last-ent/testy-go/classifier"
 )
 
 func listDirs(meta *classifier.TestableDirMeta) string {

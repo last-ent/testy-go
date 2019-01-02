@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 )
@@ -294,6 +295,7 @@ func TestExecuteDefaultTestsInFile(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
 			actual, _ := ExecuteDefaultTestsInFile(dirs, tc.Index)
+			fmt.Println(actual)
 			if !strings.Contains(actual, tc.Expr) {
 				t.Error("Not found!: " + tc.Expr)
 			}
