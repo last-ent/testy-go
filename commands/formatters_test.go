@@ -35,7 +35,7 @@ func TestListDirs(t *testing.T) {
 		Dirs:      []string{"./dir1", "./dir2", "./dir3"},
 	}
 
-	actual := listDirs(meta)
+	actual := ListDirs(meta)
 
 	for _, expr := range []string{
 		"\t01  ->  /root/dir1\n",
@@ -55,7 +55,7 @@ func TestListFiles(t *testing.T) {
 		Dirs:      []string{},
 	}
 
-	actual := listFiles(meta)
+	actual := ListFiles(meta)
 
 	for _, expr := range []string{
 		"\t01  ->  /root/dir1/file\n",
@@ -75,7 +75,7 @@ func TestListAll(t *testing.T) {
 		Files:     []string{"./dir1/file", "./dir2/file", "./dir3/file"},
 	}
 
-	actual := listAll(meta)
+	actual := ListAll(meta)
 
 	for _, expr := range []string{
 		"\t01  ->  /root/dir1\n",

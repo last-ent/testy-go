@@ -22,32 +22,32 @@ func executeCommand(command string) (string, error) {
 	return string(out.Bytes()), err
 }
 
-// ExecuteDefaultTests runs all non-skippable tests in the provided directory including all sub-directories.
+// ExecuteDefaultTests runs all non-skippable tests in the provided package including all sub-packages.
 func ExecuteDefaultTests(dir string) (string, error) {
 	return executeCommand(fmt.Sprintf("go test -short -v %s/...", dir))
 }
 
-// ExecuteAllTests runs all tests (including skippable tests) in the provided directory including all sub-directories.
+// ExecuteAllTests runs all tests (including skippable tests) in the provided package including all sub-packages.
 func ExecuteAllTests(dir string) (string, error) {
 	return executeCommand(fmt.Sprintf("go test -v %s/...", dir))
 }
 
-// ExecuteAllTestsInNestedDir runs all tests in a selected directory including nested sub-directories.
+// ExecuteAllTestsInNestedDir runs all tests in a selected package including nested sub-packages.
 func ExecuteAllTestsInNestedDir(dirMap map[int]string, dirIndex int) (string, error) {
 	return executeCommand(fmt.Sprintf("go test -v %s/...", dirMap[dirIndex]))
 }
 
-// ExecuteDefaultTestsInNestedDir runs all non-skippable tests in a selected directory including nested sub-directories.
+// ExecuteDefaultTestsInNestedDir runs all non-skippable tests in a selected package including nested sub-packages.
 func ExecuteDefaultTestsInNestedDir(dirMap map[int]string, dirIndex int) (string, error) {
 	return executeCommand(fmt.Sprintf("go test -short -v %s/...", dirMap[dirIndex]))
 }
 
-// ExecuteDefaultTestsInDir runs all tests only available in a selected directory.
+// ExecuteDefaultTestsInDir runs all tests only available in a selected package.
 func ExecuteDefaultTestsInDir(dirMap map[int]string, dirIndex int) (string, error) {
 	return executeCommand("go test -short -v " + dirMap[dirIndex])
 }
 
-// ExecuteAllTestsInDir runs all tests only available in a selected directory.
+// ExecuteAllTestsInDir runs all tests only available in a selected package.
 func ExecuteAllTestsInDir(dirMap map[int]string, dirIndex int) (string, error) {
 	return executeCommand("go test -v " + dirMap[dirIndex])
 }
