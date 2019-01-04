@@ -114,6 +114,7 @@ func StartPrompt(dir string) {
 		getExecutor(dir),
 		completer,
 		prompt.OptionTitle("Welcome to Testy Go! A tool for easy testing."),
+		prompt.OptionPrefix(">>> "),
 	)
 	p.Run()
 }
