@@ -26,12 +26,12 @@ var listSuggestions = []prompt.Suggest{
 var testSuggestions = []prompt.Suggest{
 	{Text: "test", Description: "Run all non-skippable tests under `dir`."},
 	{Text: "test-all", Description: "Run all tests (including skippable) under `dir`."},
-	{Text: "test-dir", Description: "Run all non-skippable tests under package (selected by index number) including nested sub-packages."},
-	{Text: "test-dir-all", Description: "Run all tests (including skippable) under package (selected by index number) including nested sub-packages."},
-	{Text: "test-only-dir", Description: "Run all tests immediately under package (selected by index number)"},
-	{Text: "test-only-dir-all", Description: "Run all tests (including skippable) immediately under package (selected by index number)"},
-	{Text: "test-file", Description: "Run all non-skippable tests in the file selected. (Selected by index number)"},
-	{Text: "test-file-all", Description: "Run all tests (including skippable) in the file selected. (Selected by index number)"},
+	{Text: "test-dir ", Description: "Run all non-skippable tests under package (selected by index number) including nested sub-packages."},
+	{Text: "test-dir-all ", Description: "Run all tests (including skippable) under package (selected by index number) including nested sub-packages."},
+	{Text: "test-only-dir ", Description: "Run all tests immediately under package (selected by index number)"},
+	{Text: "test-only-dir-all ", Description: "Run all tests (including skippable) immediately under package (selected by index number)"},
+	{Text: "test-file ", Description: "Run all non-skippable tests in the file selected. (Selected by index number)"},
+	{Text: "test-file-all ", Description: "Run all tests (including skippable) in the file selected. (Selected by index number)"},
 }
 
 var otherSuggestions = []prompt.Suggest{

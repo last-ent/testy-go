@@ -18,7 +18,7 @@ func completer(d prompt.Document) []prompt.Suggest {
 	for _, s := range suggestionsMap {
 		suggestions = append(suggestions, s...)
 	}
-	return prompt.FilterHasPrefix(suggestions, d.GetWordBeforeCursor(), true)
+	return prompt.FilterHasPrefix(suggestions, d.TextBeforeCursor(), true)
 }
 
 func getExecutor(dir string) func(string) {
@@ -76,7 +76,7 @@ func commandProcessor(dirMeta *classifier.TestableDirMeta, cmds []string) (strin
 	}
 }
 
-func executeDirTests(cmds []string, dirMeta *classifier.TestableDirMeta, executionFunction func(map[int]string, int) (string, error)) (string, error) {
+func executeDirTests(cmds []string, dirMeta *classifier.TestableDirMeta, executionFunction func(*commands.OrderedMap, int) (string, error)) (string, error) {
 	index, err := getIndexNumber(cmds)
 	if err != nil {
 		return "", err
@@ -85,7 +85,7 @@ func executeDirTests(cmds []string, dirMeta *classifier.TestableDirMeta, executi
 	return executionFunction(mp, index)
 }
 
-func executeFileTests(cmds []string, dirMeta *classifier.TestableDirMeta, executionFunction func(map[int]string, int) (string, error)) (string, error) {
+func executeFileTests(cmds []string, dirMeta *classifier.TestableDirMeta, executionFunction func(*commands.OrderedMap, int) (string, error)) (string, error) {
 	index, err := getIndexNumber(cmds)
 	if err != nil {
 		return "", err

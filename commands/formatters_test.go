@@ -8,7 +8,16 @@ import (
 )
 
 func TestMapToString(t *testing.T) {
-	actual := mapToString(map[int]string{1: "1", 2: "2"})
+
+	dirs := &OrderedMap{
+		om: map[int]string{
+			1: "1",
+			2: "2",
+		},
+		order: []int{1, 2},
+	}
+
+	actual := mapToString(dirs)
 
 	for _, expr := range []string{
 		"\t01  ->  1\n",

@@ -12,10 +12,10 @@ func ListDirs(meta *classifier.TestableDirMeta) string {
 	return mapToString(ListDirsAsMap(meta))
 }
 
-func mapToString(m map[int]string) string {
+func mapToString(om *OrderedMap) string {
 	strRepr := ""
-	for index, item := range m {
-		strRepr += fmt.Sprintf("\t%02d  ->  %s\n", index, item)
+	for _, item := range om.Iterator() {
+		strRepr += fmt.Sprintf("\t%02d  ->  %s\n", item.key, item.value)
 	}
 	return strRepr
 }

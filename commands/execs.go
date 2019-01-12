@@ -33,31 +33,31 @@ func ExecuteAllTests(dir string) (string, error) {
 }
 
 // ExecuteAllTestsInNestedDir runs all tests in a selected package including nested sub-packages.
-func ExecuteAllTestsInNestedDir(dirMap map[int]string, dirIndex int) (string, error) {
-	return executeCommand(fmt.Sprintf("go test -v %s/...", dirMap[dirIndex]))
+func ExecuteAllTestsInNestedDir(dirMap *OrderedMap, dirIndex int) (string, error) {
+	return executeCommand(fmt.Sprintf("go test -v %s/...", dirMap.Get(dirIndex)))
 }
 
 // ExecuteDefaultTestsInNestedDir runs all non-skippable tests in a selected package including nested sub-packages.
-func ExecuteDefaultTestsInNestedDir(dirMap map[int]string, dirIndex int) (string, error) {
-	return executeCommand(fmt.Sprintf("go test -short -v %s/...", dirMap[dirIndex]))
+func ExecuteDefaultTestsInNestedDir(dirMap *OrderedMap, dirIndex int) (string, error) {
+	return executeCommand(fmt.Sprintf("go test -short -v %s/...", dirMap.Get(dirIndex)))
 }
 
 // ExecuteDefaultTestsInDir runs all tests only available in a selected package.
-func ExecuteDefaultTestsInDir(dirMap map[int]string, dirIndex int) (string, error) {
-	return executeCommand("go test -short -v " + dirMap[dirIndex])
+func ExecuteDefaultTestsInDir(dirMap *OrderedMap, dirIndex int) (string, error) {
+	return executeCommand("go test -short -v " + dirMap.Get(dirIndex))
 }
 
 // ExecuteAllTestsInDir runs all tests only available in a selected package.
-func ExecuteAllTestsInDir(dirMap map[int]string, dirIndex int) (string, error) {
-	return executeCommand("go test -v " + dirMap[dirIndex])
+func ExecuteAllTestsInDir(dirMap *OrderedMap, dirIndex int) (string, error) {
+	return executeCommand("go test -v " + dirMap.Get(dirIndex))
 }
 
 // ExecuteDefaultTestsInFile runs all non-skippable tests within a selected file.
 // NOTE: This will only work for files that follow the conventions
 // * filename.go
 // * filename_test.go
-func ExecuteDefaultTestsInFile(fileMap map[int]string, fileIndex int) (string, error) {
-	testFile := fileMap[fileIndex]
+func ExecuteDefaultTestsInFile(fileMap *OrderedMap, fileIndex int) (string, error) {
+	testFile := fileMap.Get(fileIndex)
 	file := strings.Replace(testFile, "_test", "", 1)
 	return executeCommand(fmt.Sprintf("go test -short -v %s %s", file, testFile))
 }
@@ -66,8 +66,8 @@ func ExecuteDefaultTestsInFile(fileMap map[int]string, fileIndex int) (string, e
 // NOTE: This will only work for files that follow the conventions
 // * filename.go
 // * filename_test.go
-func ExecuteAllTestsInFile(fileMap map[int]string, fileIndex int) (string, error) {
-	testFile := fileMap[fileIndex]
+func ExecuteAllTestsInFile(fileMap *OrderedMap, fileIndex int) (string, error) {
+	testFile := fileMap.Get(fileIndex)
 	file := strings.Replace(testFile, "_test", "", 1)
 	return executeCommand(fmt.Sprintf("go test -v %s %s", file, testFile))
 }
