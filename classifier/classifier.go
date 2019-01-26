@@ -44,7 +44,7 @@ func TraverseDir(dir string) (*TestableDirMeta, error) {
 
 			parentDir := filepath.Dir(path)
 			relParentDir, _ := filepath.Rel(dir, parentDir)
-			dirsMap[relParentDir] = true
+			dirsMap["./"+relParentDir] = true
 		}
 		return nil
 	})

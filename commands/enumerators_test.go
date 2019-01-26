@@ -15,10 +15,13 @@ func TestListDirsAsMap(t *testing.T) {
 	}
 
 	actual := ListDirsAsMap(meta)
-	expected := map[int]string{
-		1: "/root/dir1",
-		2: "/root/dir2",
-		3: "/root/dir3",
+	expected := &OrderedMap{
+		om: map[int]string{
+			1: "/root/dir1",
+			2: "/root/dir2",
+			3: "/root/dir3",
+		},
+		order: []int{1, 2, 3},
 	}
 
 	if !reflect.DeepEqual(actual, expected) {
@@ -34,10 +37,13 @@ func TestListFilesAsMap(t *testing.T) {
 	}
 
 	actual := ListFilesAsMap(meta)
-	expected := map[int]string{
-		1: "/root/dir1/file",
-		2: "/root/dir2/file",
-		3: "/root/dir3/file",
+	expected := &OrderedMap{
+		om: map[int]string{
+			1: "/root/dir1/file",
+			2: "/root/dir2/file",
+			3: "/root/dir3/file",
+		},
+		order: []int{1, 2, 3},
 	}
 
 	if !reflect.DeepEqual(actual, expected) {

@@ -73,9 +73,12 @@ func TestExecuteAllTests(t *testing.T) {
 }
 
 func TestExecuteAllTestsInNestedDir(t *testing.T) {
-	dirs := map[int]string{
-		1: "../test_folder/level1",
-		2: "../test_folder/level2",
+	dirs := &OrderedMap{
+		om: map[int]string{
+			1: "../test_folder/level1",
+			2: "../test_folder/level2",
+		},
+		order: []int{1, 2},
 	}
 
 	testCases := []struct {
@@ -118,9 +121,12 @@ func TestExecuteAllTestsInNestedDir(t *testing.T) {
 }
 
 func TestExecuteDefaultTestsInNestedDir(t *testing.T) {
-	dirs := map[int]string{
-		1: "../test_folder/level1",
-		2: "../test_folder/level2",
+	dirs := &OrderedMap{
+		om: map[int]string{
+			1: "../test_folder/level1",
+			2: "../test_folder/level2",
+		},
+		order: []int{1, 2},
 	}
 
 	testCases := []struct {
@@ -163,10 +169,13 @@ func TestExecuteDefaultTestsInNestedDir(t *testing.T) {
 }
 
 func TestExecuteDefaultTestsInDir(t *testing.T) {
-	dirs := map[int]string{
-		1: "../test_folder/level2",
-		2: "../test_folder/level3/sub-level",
-		3: "../test_folder/level3/sub-level/sub-level2",
+	dirs := &OrderedMap{
+		om: map[int]string{
+			1: "../test_folder/level2",
+			2: "../test_folder/level3/sub-level",
+			3: "../test_folder/level3/sub-level/sub-level2",
+		},
+		order: []int{1, 2, 3},
 	}
 
 	testCases := []struct {
@@ -216,10 +225,13 @@ func TestExecuteDefaultTestsInDir(t *testing.T) {
 	}
 }
 func TestExecuteAllTestsInDir(t *testing.T) {
-	dirs := map[int]string{
-		1: "../test_folder/level2",
-		2: "../test_folder/level3/sub-level",
-		3: "../test_folder/level3/sub-level/sub-level2",
+	dirs := &OrderedMap{
+		om: map[int]string{
+			1: "../test_folder/level2",
+			2: "../test_folder/level3/sub-level",
+			3: "../test_folder/level3/sub-level/sub-level2",
+		},
+		order: []int{1, 2, 3},
 	}
 
 	testCases := []struct {
@@ -270,9 +282,12 @@ func TestExecuteAllTestsInDir(t *testing.T) {
 }
 
 func TestExecuteDefaultTestsInFile(t *testing.T) {
-	dirs := map[int]string{
-		1: "../test_folder/level1/file1_test.go",
-		2: "../test_folder/level1/file2_test.go",
+	dirs := &OrderedMap{
+		om: map[int]string{
+			1: "../test_folder/level1/file1_test.go",
+			2: "../test_folder/level1/file2_test.go",
+		},
+		order: []int{1, 2},
 	}
 
 	testCases := []struct {
@@ -304,9 +319,12 @@ func TestExecuteDefaultTestsInFile(t *testing.T) {
 }
 
 func TestExecuteAllTestsInFile(t *testing.T) {
-	dirs := map[int]string{
-		1: "../test_folder/level1/file1_test.go",
-		2: "../test_folder/level1/file2_test.go",
+	dirs := &OrderedMap{
+		om: map[int]string{
+			1: "../test_folder/level1/file1_test.go",
+			2: "../test_folder/level1/file2_test.go",
+		},
+		order: []int{1, 2},
 	}
 
 	testCases := []struct {
