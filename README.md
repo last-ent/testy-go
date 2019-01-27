@@ -17,7 +17,6 @@
   * [Commands used in Demo](#commands-used-in-demo)
 
 ![sample-screen](testy-1.png) ![sample-screen](testy-2.png)
-![sample-screen](testy-3.png) ![sample-screen](testy-4.png)
 
 ## How to Use
 
