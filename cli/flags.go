@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"path/filepath"
 	"strings"
+
+	"github.com/fatih/color"
 )
 
 // ParseOpts contains all the parsed flags.
@@ -23,7 +25,8 @@ func ParseFlags(getDirFn func() (string, error)) (*ParseOpts, error) {
 	flag.Parse()
 
 	workDir, _ = filepath.Abs(workDir)
-	fmt.Println("WELCOME TO TESTY GO! A TOOL FOR EASY TESTING.\nCWD: " + workDir)
+	color.New(color.FgHiBlack, color.BgHiYellow).Println("WELCOME TO TESTY GO! A TOOL FOR EASY TESTING.")
+	color.New(color.FgHiMagenta).Printf("CWD: %s\n\n", workDir)
 
 	return &ParseOpts{workDir}, nil
 }

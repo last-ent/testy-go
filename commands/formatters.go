@@ -34,6 +34,6 @@ func ListFiles(meta *classifier.TestableDirMeta) string {
 func ListAll(meta *classifier.TestableDirMeta) string {
 	dirsRepr := ListDirs(meta)
 	filesRepr := ListFiles(meta)
-
-	return fmt.Sprintf("DIRS:\n%s\n==========\n\nFILES:\n%s", dirsRepr, filesRepr)
+	s := "========================================================================================================================================================================"
+	return fmt.Sprintf("DIRS:\n%s\n%s\n\nFILES:\n%s", dirsRepr, s, filesRepr)
 }

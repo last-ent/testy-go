@@ -9,6 +9,7 @@ import (
 
 	"github.com/last-ent/testy-go/classifier"
 	"github.com/last-ent/testy-go/commands"
+	"github.com/last-ent/testy-go/printer"
 
 	prompt "github.com/c-bata/go-prompt"
 )
@@ -27,21 +28,30 @@ func getExecutor(dir string) func(string) {
 		s = strings.ToLower(s)
 		dirMeta, err := classifier.TraverseDir(dir)
 		if err != nil {
-			panic(fmt.Sprintf("Unable to parse provided directory. Dir: %s\nError: %s\n", dir, err))
+			printer.OnFail("========================================================")
+			printer.OnFail(fmt.Sprintf("Unable to parse provided directory. Dir: %s\nError: %s\n", dir, err))
+			printer.OnFail("========================================================")
+			os.Exit(1)
 		}
 
 		switch s {
 		case "":
 			return
 		case "quit", "exit", "q":
-			fmt.Println("Bye!")
+			printer.OnSkip("Bye!")
 			os.Exit(0)
 		default:
-			result, err := commandProcessor(dirMeta, strings.Fields(s))
+			commandFields := strings.Fields(s)
+			result, err := commandProcessor(dirMeta, commandFields)
+
+			if strings.HasPrefix(commandFields[0], "list") {
+				printer.OnSkip(result)
+			} else if result != "" {
+				printer.PrintResults(result)
+			}
+
 			if err != nil {
-				fmt.Printf("%s\n%s\n", result, err)
-			} else {
-				fmt.Println(result)
+				printer.OnFail(err.Error())
 			}
 		}
 	}

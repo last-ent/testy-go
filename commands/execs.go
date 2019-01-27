@@ -24,32 +24,32 @@ func executeCommand(command string) (string, error) {
 
 // ExecuteDefaultTests runs all non-skippable tests in the provided package including all sub-packages.
 func ExecuteDefaultTests(dir string) (string, error) {
-	return executeCommand(fmt.Sprintf("go test -short -v %s/...", dir))
+	return executeCommand(fmt.Sprintf("go test -short -json -v %s/...", dir))
 }
 
 // ExecuteAllTests runs all tests (including skippable tests) in the provided package including all sub-packages.
 func ExecuteAllTests(dir string) (string, error) {
-	return executeCommand(fmt.Sprintf("go test -v %s/...", dir))
+	return executeCommand(fmt.Sprintf("go test -json -v %s/...", dir))
 }
 
 // ExecuteAllTestsInNestedDir runs all tests in a selected package including nested sub-packages.
 func ExecuteAllTestsInNestedDir(dirMap *OrderedMap, dirIndex int) (string, error) {
-	return executeCommand(fmt.Sprintf("go test -v %s/...", dirMap.Get(dirIndex)))
+	return executeCommand(fmt.Sprintf("go test -json -v %s/...", dirMap.Get(dirIndex)))
 }
 
 // ExecuteDefaultTestsInNestedDir runs all non-skippable tests in a selected package including nested sub-packages.
 func ExecuteDefaultTestsInNestedDir(dirMap *OrderedMap, dirIndex int) (string, error) {
-	return executeCommand(fmt.Sprintf("go test -short -v %s/...", dirMap.Get(dirIndex)))
+	return executeCommand(fmt.Sprintf("go test -short -json -v %s/...", dirMap.Get(dirIndex)))
 }
 
 // ExecuteDefaultTestsInDir runs all tests only available in a selected package.
 func ExecuteDefaultTestsInDir(dirMap *OrderedMap, dirIndex int) (string, error) {
-	return executeCommand("go test -short -v " + dirMap.Get(dirIndex))
+	return executeCommand("go test -short -json -v " + dirMap.Get(dirIndex))
 }
 
 // ExecuteAllTestsInDir runs all tests only available in a selected package.
 func ExecuteAllTestsInDir(dirMap *OrderedMap, dirIndex int) (string, error) {
-	return executeCommand("go test -v " + dirMap.Get(dirIndex))
+	return executeCommand("go test -json -v " + dirMap.Get(dirIndex))
 }
 
 // ExecuteDefaultTestsInFile runs all non-skippable tests within a selected file.
@@ -59,7 +59,7 @@ func ExecuteAllTestsInDir(dirMap *OrderedMap, dirIndex int) (string, error) {
 func ExecuteDefaultTestsInFile(fileMap *OrderedMap, fileIndex int) (string, error) {
 	testFile := fileMap.Get(fileIndex)
 	file := strings.Replace(testFile, "_test", "", 1)
-	return executeCommand(fmt.Sprintf("go test -short -v %s %s", file, testFile))
+	return executeCommand(fmt.Sprintf("go test -short -json -v %s %s", file, testFile))
 }
 
 // ExecuteAllTestsInFile runs all tests (including skippable tests) within a selected file.
@@ -69,5 +69,5 @@ func ExecuteDefaultTestsInFile(fileMap *OrderedMap, fileIndex int) (string, erro
 func ExecuteAllTestsInFile(fileMap *OrderedMap, fileIndex int) (string, error) {
 	testFile := fileMap.Get(fileIndex)
 	file := strings.Replace(testFile, "_test", "", 1)
-	return executeCommand(fmt.Sprintf("go test -v %s %s", file, testFile))
+	return executeCommand(fmt.Sprintf("go test -json -v %s %s", file, testFile))
 }
